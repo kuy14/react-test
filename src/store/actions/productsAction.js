@@ -4,7 +4,7 @@ import axios from "axios";
 export const getProducts = () => async (dispatch) => {
   try {
     const res = await axios.get(
-      "https://run.mocky.io/v3/75590491-d4fc-49b8-8312-a01d6bd9255b"
+      "https://run.mocky.io/v3/5b878711-c8d6-44d9-bb52-2e546de8ba9e"
     );
     dispatch({
       type: GET_DATA,

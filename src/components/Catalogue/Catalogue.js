@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Catalogue.css";
 import { connect } from "react-redux";
 import { getProducts } from "../../store/actions/productsAction";
-import products from "../products";
+import { bindActionCreators } from "redux";
 
 class catalogue extends Component {
   componentDidMount() {
@@ -16,8 +16,8 @@ class catalogue extends Component {
         <span className="catalogue-label">Catalogue</span>
         <div className="row">
           {products.map((u) => (
-            <div className="column">
-              <div className="card" key={u.productId}>
+            <div className="column" key={u.productId}>
+              <div className="card" onClick={this.props.onAddCart}>
                 <img
                   src={u.productImage}
                   className="card-image"
@@ -36,4 +36,18 @@ class catalogue extends Component {
 
 const mapStateToProps = (state) => ({ products: state.products });
 
-export default connect(mapStateToProps, { getProducts })(catalogue);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProducts: bindActionCreators(getProducts, dispatch),
+    onAddCart: () =>
+      dispatch({
+        type: "ADD_CART",
+        payload: [
+          { productId: 1, productName: "baju" },
+          { productId: 2, productName: "celana" },
+        ],
+      }),
+  };
+};
+// single object
+export default connect(mapStateToProps, mapDispatchToProps)(catalogue);

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import "./CartCounter.css";
+import cart from "../../assets/icons/cart.svg";
 
-const cartCounter = () => (
-  <div className="CartCounter">
-    <div className="cartLabel">
-      <span>Cart (4)</span>
-    </div>
-  </div>
-);
+class cartCounter extends Component {
+  render() {
+    return (
+      <div className="CartCounter">
+        <span className="cartLabel">
+          <img src={cart} width="20"></img> Cart (4)
+        </span>
+      </div>
+    );
+  }
+}
 
 export default cartCounter;

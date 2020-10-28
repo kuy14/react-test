@@ -1,7 +1,13 @@
 .CartCounter {
-  border: 1px solid #000;
-  margin: 10px;
+  box-shadow: 0 0 5px #9e9e9e;
 }
 .cartLabel {
   padding: 10px;
+  float: right;
+}
+
+.CartCounter::after {
+  content: "";
+  display: block;
+  clear: both;
 }

@@ -5,9 +5,12 @@
   display: block;
   margin-bottom: 10px;
 }
-.cartList-card {
+.cartList-cardContainer {
   border: 1px solid #000;
-  height: 50px;
+  border-radius: 5px;
+}
+.cartList-card {
+  margin: 10px;
 }
 .cartList-cartInfo {
   display: flex;
@@ -19,4 +22,10 @@
 }
 .price-label {
   margin-top: 5px;
+}
+.cardList-title {
+  display: block;
+}
+.cardList-price {
+  display: block;
 }

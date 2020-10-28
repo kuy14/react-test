@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 600px) {
   .column {
-    width: 96%;
+    width: 45%;
     display: block;
     margin-bottom: 20px;
   }
@@ -45,6 +45,9 @@
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
+}
+.card:hover {
+  cursor: pointer;
 }
 
 .card-image {

@@ -1,0 +1,22 @@
+.CartList {
+  margin: 10px;
+}
+.cartList-label {
+  display: block;
+  margin-bottom: 10px;
+}
+.cartList-card {
+  border: 1px solid #000;
+  height: 50px;
+}
+.cartList-cartInfo {
+  display: flex;
+}
+.btn-empty {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.price-label {
+  margin-top: 5px;
+}

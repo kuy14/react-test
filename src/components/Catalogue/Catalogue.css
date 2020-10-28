@@ -1,0 +1,16 @@
+.catalogue {
+  margin: 10px;
+}
+.catalogue-label {
+  display: block;
+  margin-bottom: 10px;
+}
+.catalogue-containerCard {
+  display: flex;
+}
+.catalogue-card {
+  width: 25%;
+  border: 1px solid #000;
+  height: 200px;
+  margin-right: 10px;
+}

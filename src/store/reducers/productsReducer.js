@@ -15,10 +15,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case ADD_CART:
+      // const updateArray = state.products.filter(
+      //   (result) => result.productId == action.payload.productId
+      // );
       return {
         ...state,
         // cek array sekarang, jika ada replace atau update
-        carts: action.payload,
+        carts: [...state.carts, action.payload],
       };
     default:
       return state;

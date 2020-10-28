@@ -10,14 +10,24 @@ class catalogue extends Component {
   }
   render() {
     const { products } = this.props.products;
-    console.log(this.props.products);
+
     return (
       <div className="catalogue">
         <span className="catalogue-label">Catalogue</span>
         <div className="row">
           {products.map((u) => (
             <div className="column" key={u.productId}>
-              <div className="card" onClick={this.props.onAddCart}>
+              <div
+                className="card"
+                onClick={() =>
+                  this.props.onAddCart(
+                    u.productId,
+                    u.productName,
+                    u.productPrice,
+                    u.productImage
+                  )
+                }
+              >
                 <img
                   src={u.productImage}
                   className="card-image"
@@ -39,13 +49,16 @@ const mapStateToProps = (state) => ({ products: state.products });
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: bindActionCreators(getProducts, dispatch),
-    onAddCart: () =>
+    onAddCart: (id, name, price, image) =>
       dispatch({
         type: "ADD_CART",
-        payload: [
-          { productId: 1, productName: "baju" },
-          { productId: 2, productName: "celana" },
-        ],
+        payload: {
+          productId: id,
+          productName: name,
+          productPrice: price,
+          productImage: image,
+          items: 1,
+        },
       }),
   };
 };

@@ -10,7 +10,16 @@ class products extends Component {
     const { products } = this.props.products;
     console.log(this.props.products);
 
-    return <div></div>;
+    return (
+      <div>
+        {products.map((u) => (
+          <React.Fragment key={u.productId}>
+            <h6>{u.productName}</h6>
+            <h6>{u.productPrice}</h6>
+          </React.Fragment>
+        ))}
+      </div>
+    );
   }
 }
 

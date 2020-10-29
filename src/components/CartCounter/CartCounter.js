@@ -9,7 +9,7 @@ class cartCounter extends Component {
     return (
       <div className="CartCounter">
         <span className="cartLabel">
-          <img src={cartImage} width="20" alt="cart"></img> Cart ({totalCarts})
+          <img src={cartImage} width="18" alt="cart"></img> Cart ({totalCarts})
         </span>
       </div>
     );

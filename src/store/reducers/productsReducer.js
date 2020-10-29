@@ -27,6 +27,7 @@ export default function (state = initialState, action) {
         return {
           ...state,
           carts: [...state.carts, action.payload],
+          totalPrice: state.totalPrice + parseInt(action.payload.productPrice),
         };
       } else {
         // jika array of object dengan id yang sama sudah ada
@@ -40,6 +41,7 @@ export default function (state = initialState, action) {
         return {
           ...state,
           carts: filteredCart, // state carts diisi dengan array of object yang baru
+          totalPrice: state.totalPrice + parseInt(newCart[0].productPrice),
         };
       }
 

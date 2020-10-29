@@ -3,20 +3,35 @@ import "./CartList.css";
 import { connect } from "react-redux";
 
 class cartList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totalPrice: 0,
+    };
+  }
+
   render() {
+    const carts = this.props.cart;
+    var totalPrice = 0;
     return (
       <div className="CartList">
         <span className="cartList-label">Current Cart</span>
         <div className="cartList-cardContainer">
-          <div className="cartList-card">
-            <span className="cardList-title">Baju</span>
-            <span className="cardList-price">Rp. 150.000</span>
-            <hr />
-          </div>
+          {carts.map((c) => (
+            <div className="cartList-card" key={c.productId}>
+              <span className="cardList-title">
+                {c.productName} ({c.items} Item)
+              </span>
+              <span className="cardList-price">
+                {(this.state.totalPrice = parseInt(c.productPrice) * c.items)}
+              </span>
+              <hr />
+            </div>
+          ))}
         </div>
         <div className="cartList-cartInfo">
           <button className="btn-empty">Empty Cart</button>
-          <span className="price-label">Total Price : 150.000</span>
+          <span className="price-label">Total Price : {totalPrice}</span>
         </div>
       </div>
     );
@@ -25,7 +40,7 @@ class cartList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.carts,
+    cart: state.products.carts,
   };
 };
 

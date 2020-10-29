@@ -10,7 +10,6 @@ class catalogue extends Component {
   }
   render() {
     const { products } = this.props.products;
-
     return (
       <div className="catalogue">
         <span className="catalogue-label">Catalogue</span>
@@ -31,7 +30,7 @@ class catalogue extends Component {
                 <img
                   src={u.productImage}
                   className="card-image"
-                  alt="Product Image"
+                  alt="Product"
                 ></img>
                 <h1>{u.productName}</h1>
                 <h3>{u.productPrice}</h3>
@@ -49,6 +48,7 @@ const mapStateToProps = (state) => ({ products: state.products });
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: bindActionCreators(getProducts, dispatch),
+    // single object
     onAddCart: (id, name, price, image) =>
       dispatch({
         type: "ADD_CART",
@@ -62,5 +62,5 @@ const mapDispatchToProps = (dispatch) => {
       }),
   };
 };
-// single object
+
 export default connect(mapStateToProps, mapDispatchToProps)(catalogue);

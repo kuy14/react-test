@@ -32,8 +32,8 @@ class catalogue extends Component {
                   className="card-image"
                   alt="Product"
                 ></img>
-                <h1>{u.productName}</h1>
-                <h3>{u.productPrice}</h3>
+                <h1 className="product-title">{u.productName}</h1>
+                <h3 className="product-price">Rp. {u.productPrice}</h3>
               </div>
             </div>
           ))}

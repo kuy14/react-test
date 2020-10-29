@@ -1,10 +1,10 @@
-import { GET_DATA, ADD_CART } from "../types";
+import { GET_DATA, ADD_CART, EMPTY_CART } from "../types";
 
 const initialState = {
   products: [],
   carts: [],
   totalPrice: 0,
-  loading: true,
+  totalCarts: 0,
 };
 
 export default function (state = initialState, action) {
@@ -13,7 +13,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         products: action.payload,
-        loading: false,
       };
     case ADD_CART:
       const oldCart = state.carts;
@@ -28,6 +27,7 @@ export default function (state = initialState, action) {
           ...state,
           carts: [...state.carts, action.payload],
           totalPrice: state.totalPrice + parseInt(action.payload.productPrice),
+          totalCarts: state.totalCarts + 1,
         };
       } else {
         // jika array of object dengan id yang sama sudah ada
@@ -41,9 +41,17 @@ export default function (state = initialState, action) {
         return {
           ...state,
           carts: filteredCart, // state carts diisi dengan array of object yang baru
-          totalPrice: state.totalPrice + parseInt(newCart[0].productPrice),
+          totalPrice: state.totalPrice + parseInt(newCartObj.productPrice),
+          totalCarts: state.totalCarts + 1,
         };
       }
+    case EMPTY_CART:
+      return {
+        ...state,
+        products: state.products,
+        carts: [],
+        totalPrice: 0,
+      };
 
     default:
       return state;

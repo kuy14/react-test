@@ -1,17 +1,25 @@
 import React, { Component } from "react";
 import "./CartCounter.css";
-import cart from "../../assets/icons/cart.svg";
+import cartImage from "../../assets/icons/cart.svg";
+import { connect } from "react-redux";
 
 class cartCounter extends Component {
   render() {
+    const totalCarts = this.props.totalCarts;
     return (
       <div className="CartCounter">
         <span className="cartLabel">
-          <img src={cart} width="20"></img> Cart (4)
+          <img src={cartImage} width="20" alt="cart"></img> Cart ({totalCarts})
         </span>
       </div>
     );
   }
 }
 
-export default cartCounter;
+const mapStateToProps = (state) => {
+  return {
+    totalCarts: state.products.totalCarts,
+  };
+};
+
+export default connect(mapStateToProps)(cartCounter);

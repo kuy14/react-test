@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./Catalogue.css";
 import { connect } from "react-redux";
-import { getProducts } from "../../store/actions/productsAction";
+import { getProductsAsync } from "../../store/actions/productsAction";
 import { bindActionCreators } from "redux";
 
 class catalogue extends Component {
   componentDidMount() {
-    this.props.getProducts();
+    this.props.getProductsAsync();
   }
   render() {
     const { products } = this.props.products;
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => ({ products: state.products });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProducts: bindActionCreators(getProducts, dispatch),
+    getProductsAsync: bindActionCreators(getProductsAsync, dispatch),
     // single object
     onAddCart: (id, name, price, image) =>
       dispatch({

@@ -51,6 +51,7 @@ export default function (state = initialState, action) {
         products: state.products,
         carts: [],
         totalPrice: 0,
+        totalCarts: 0,
       };
 
     default:

@@ -1,10 +1,11 @@
-import { GET_DATA, ADD_CART, EMPTY_CART } from "../types";
+import { GET_DATA, ADD_CART, EMPTY_CART, SET_LOADING } from "../types";
 
 const initialState = {
   products: [],
   carts: [],
   totalPrice: 0,
   totalCarts: 0,
+  isLoading: false,
 };
 
 export default function (state = initialState, action) {
@@ -57,6 +58,11 @@ export default function (state = initialState, action) {
         carts: [],
         totalPrice: 0,
         totalCarts: 0,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
       };
 
     default:

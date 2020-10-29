@@ -15,8 +15,8 @@ class cartList extends Component {
     const carts = this.props.cart;
     return (
       <div className="CartList">
-        <span className="cartList-label">Current Cart</span>
         <div className="cartList-cardContainer">
+          <span className="cartList-label">Current Cart</span>
           <div>
             {carts.length === 0 ? (
               <div>
@@ -25,7 +25,7 @@ class cartList extends Component {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="cartList-Data">
                 {carts.map((c) => (
                   <div className="cartList-card" key={c.productId}>
                     <span className="cardList-title">
@@ -40,17 +40,17 @@ class cartList extends Component {
               </div>
             )}
           </div>
-        </div>
-        <div className="cartList-cartInfo">
-          <button
-            className="btn-empty"
-            onClick={() => this.props.onEmptyCart()}
-          >
-            Empty Cart
-          </button>
-          <span className="price-label">
-            Total Price : {this.props.totalPrice}
-          </span>
+          <div className="cartList-cartInfo">
+            <button
+              className="btn-empty"
+              onClick={() => this.props.onEmptyCart()}
+            >
+              Empty Cart
+            </button>
+            <span className="price-label">
+              Total Price : {this.props.totalPrice}
+            </span>
+          </div>
         </div>
       </div>
     );

@@ -10,34 +10,38 @@ class catalogue extends Component {
   }
   render() {
     const { products } = this.props.products;
+    const getLoading = this.props.products.isLoading;
     return (
       <div className="catalogue">
         <span className="catalogue-label">Catalogue</span>
-        <div className="row">
-          {products.map((u) => (
-            <div className="column" key={u.productId}>
-              <div
-                className="card"
-                onClick={() =>
-                  this.props.onAddCart(
-                    u.productId,
-                    u.productName,
-                    u.productPrice,
-                    u.productImage
-                  )
-                }
-              >
-                <img
-                  src={u.productImage}
-                  className="card-image"
-                  alt="Product"
-                ></img>
-                <h1 className="product-title">{u.productName}</h1>
-                <h3 className="product-price">Rp. {u.productPrice}</h3>
+        {getLoading && <span>Loading ...</span>}
+        {!getLoading && (
+          <div className="row">
+            {products.map((u) => (
+              <div className="column" key={u.productId}>
+                <div
+                  className="card"
+                  onClick={() =>
+                    this.props.onAddCart(
+                      u.productId,
+                      u.productName,
+                      u.productPrice,
+                      u.productImage
+                    )
+                  }
+                >
+                  <img
+                    src={u.productImage}
+                    className="card-image"
+                    alt="Product"
+                  ></img>
+                  <h1 className="product-title">{u.productName}</h1>
+                  <h3 className="product-price">Rp. {u.productPrice}</h3>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }

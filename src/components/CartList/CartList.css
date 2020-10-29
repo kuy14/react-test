@@ -3,18 +3,22 @@
 }
 .cartList-label {
   display: block;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 .cartList-cardContainer {
-  border: 1px solid #000;
   border-radius: 5px;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 5px #9e9e9e;
+  padding: 5px;
 }
 .cartList-card {
   margin: 10px;
 }
 .cartList-cartInfo {
   display: flex;
+  margin: 10px;
 }
+
 .btn-empty {
   margin-top: 10px;
   margin-right: auto;
@@ -37,4 +41,8 @@
 }
 .cardList-price {
   display: block;
+}
+.cardList-Data {
+  max-height: 150px;
+  overflow: auto;
 }

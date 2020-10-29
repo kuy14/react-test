@@ -17,11 +17,11 @@ export default function (state = initialState, action) {
     case ADD_CART:
       const oldCart = state.carts;
       // cek array state
-      var newCart = oldCart.filter(function (item) {
+      var newCart = oldCart.find((item) => {
         return item.productId === action.payload.productId;
       });
-      // jika array of object masih kosong
-      if (newCart.length === 0) {
+      // jika array of object masih kosong / undefined
+      if (newCart === undefined) {
         // isi state carts langsung dari action.payload
         return {
           ...state,
@@ -30,18 +30,23 @@ export default function (state = initialState, action) {
           totalCarts: state.totalCarts + 1,
         };
       } else {
-        // jika array of object dengan id yang sama sudah ada
-        // tambahkan jumlah items dari items sebelumnya
-        newCart[0].items = newCart[0].items + 1;
-        const newCartObj = newCart[0]; //object yang baru di simpan di variable newCartObj
-        let filteredCart = state.carts.filter(
-          (cart) => cart.productId !== action.payload.productId
-        ); // filter objek dari state yang sebelum nya, sehingga object di hapus
-        filteredCart.push(newCartObj); // tambahkan dengan object yang baru
+        // buat object baru dengan memasukkan object hasil dari find
+        const existingCart = Object.assign({}, newCart);
+        existingCart.items = existingCart.items + 1;
+
+        // cari object yang sudah ada, lalu hapus object
+        let filteredCart = [
+          ...state.carts.filter(
+            (item) => item.productId !== action.payload.productId
+          ),
+        ];
+
+        // tambahkan dengan object yang baru
+        filteredCart.push(existingCart);
         return {
           ...state,
           carts: filteredCart, // state carts diisi dengan array of object yang baru
-          totalPrice: state.totalPrice + parseInt(newCartObj.productPrice),
+          totalPrice: state.totalPrice + parseInt(existingCart.productPrice),
           totalCarts: state.totalCarts + 1,
         };
       }

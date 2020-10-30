@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Catalogue.css";
 import { getProductsAsync } from "../../store/actions/productsAction";
 import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
 
 const Catalogue = () => {
   const dispatch = useDispatch();

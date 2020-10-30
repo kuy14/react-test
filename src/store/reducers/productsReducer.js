@@ -64,6 +64,10 @@ export default function (state = initialState, action) {
         ...state,
         isLoading: action.payload,
       };
+    case "TEST":
+      return {
+        ...state,
+      };
 
     default:
       return state;

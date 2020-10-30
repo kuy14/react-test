@@ -7,6 +7,7 @@ const Catalogue = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.products);
+  const getLoading = useSelector((state) => state.products.isLoading);
 
   useEffect(() => {
     dispatch(getProductsAsync());
@@ -15,36 +16,38 @@ const Catalogue = () => {
   return (
     <div className="catalogue">
       <span className="catalogue-label">Catalogue</span>
-
-      <div className="row">
-        {products.map((u) => (
-          <div className="column" key={u.productId}>
-            <div
-              className="card"
-              onClick={() =>
-                dispatch({
-                  type: "ADD_CART",
-                  payload: {
-                    productId: u.productId,
-                    productName: u.productName,
-                    productPrice: u.productPrice,
-                    productImage: u.productImage,
-                    items: 1,
-                  },
-                })
-              }
-            >
-              <img
-                src={u.productImage}
-                className="card-image"
-                alt="Product"
-              ></img>
-              <h1 className="product-title">{u.productName}</h1>
-              <h3 className="product-price">Rp. {u.productPrice}</h3>
+      {getLoading && <span>Loading ...</span>}
+      {!getLoading && (
+        <div className="row">
+          {products.map((u) => (
+            <div className="column" key={u.productId}>
+              <div
+                className="card"
+                onClick={() =>
+                  dispatch({
+                    type: "ADD_CART",
+                    payload: {
+                      productId: u.productId,
+                      productName: u.productName,
+                      productPrice: u.productPrice,
+                      productImage: u.productImage,
+                      items: 1,
+                    },
+                  })
+                }
+              >
+                <img
+                  src={u.productImage}
+                  className="card-image"
+                  alt="Product"
+                ></img>
+                <h1 className="product-title">{u.productName}</h1>
+                <h3 className="product-price">Rp. {u.productPrice}</h3>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
